@@ -95,11 +95,11 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{status}")]
-        public async Task<ResponseDto> GetTasksByStatus(string status)
+        public async Task<ResponseDto> GetTasksByStatus(StatusTask status)
         {
             try
             {
-                _response.Result = await _repository.GetTasksByStatus((StatusTask)Enum.Parse(typeof(StatusTask), status));
+                _response.Result = await _repository.GetTasksByStatus(status);
             }
             catch (Exception ex)
             {
@@ -118,11 +118,11 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{priority}")]
-        public async Task<ResponseDto> GetTasksByPriority(string priority)
+        public async Task<ResponseDto> GetTasksByPriority(SD.Priority priority)
         {
             try
             {
-                _response.Result = await _repository.GetTasksByPriority((SD.Priority)Enum.Parse(typeof(SD.Priority), priority));
+                _response.Result = await _repository.GetTasksByPriority(priority);
             }
             catch (Exception ex)
             {

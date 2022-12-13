@@ -97,11 +97,11 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{status}")]
-        public async Task<ResponseDto> GetProjectsByStatus(string status)
+        public async Task<ResponseDto> GetProjectsByStatus(StatusProject status)
         {
             try
             {
-                _response.Result = await _repository.GetProjectsByStatus((StatusProject)Enum.Parse(typeof(StatusProject), status));
+                _response.Result = await _repository.GetProjectsByStatus(status);
             }
             catch (Exception ex)
             {
@@ -120,11 +120,11 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{priority}")]
-        public async Task<ResponseDto> GetProjectsByPriority(string priority)
+        public async Task<ResponseDto> GetProjectsByPriority(SD.Priority priority)
         {
             try
             {
-                _response.Result = await _repository.GetProjectsByPriority((SD.Priority)Enum.Parse(typeof(SD.Priority), priority));
+                _response.Result = await _repository.GetProjectsByPriority(priority);
             }
             catch (Exception ex)
             {
@@ -166,7 +166,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="dateTo"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{dateFrom dateTo}")]
+        [Route("{dateFrom} {dateTo}")]
         public async Task<ResponseDto> GetProjectsByDateRange(string dateFrom, string dateTo)
         {
             try
@@ -206,7 +206,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPut]
         public async Task<ResponseDto> UpdateProject([FromBody] Project project)
         {
             try
