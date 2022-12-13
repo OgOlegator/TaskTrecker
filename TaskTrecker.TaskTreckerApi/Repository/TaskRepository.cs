@@ -17,7 +17,7 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         }
 
         /// <summary>
-        /// Add new task / change task in data base
+        /// Add new task or change task info in data base
         /// </summary>
         /// <param name="task"></param>
         /// <returns></returns>
@@ -55,7 +55,6 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// <exception cref="Exception"></exception>
         public async Task<bool> DeleteTask(int id)
         {
-
             var task = await _db.Tasks.FirstOrDefaultAsync(item => item.Id == id);
 
             if (task == null)

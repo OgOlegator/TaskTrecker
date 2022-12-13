@@ -5,24 +5,22 @@ namespace TaskTrecker.TaskTreckerApi.Repository.IRepository
 {
     public interface IProjectRepository
     {
-        Project AddProject(Project project);
+        Task<Project> CreateUpdateProject(Project project);
 
-        Project ChangeProject(Project project);
+        Task<bool> DeleteProject(int id);
 
-        bool DeleteProject(int id);
+        Task<IEnumerable<Project>> GetProjects();
 
-        IEnumerable<Project> GetProjects();
-        
-        Project GetProjectById(int id);
-        
-        IEnumerable<Project> GetProjectsByName(string nameProject);
+        Task<Project> GetProjectById(int id);
 
-        IEnumerable<Project> GetProjectsByStatus(StatusProject status);
+        Task<IEnumerable<Project>> GetProjectsByName(string nameProject);
 
-        IEnumerable<Project> GetProjectsByPriority(Priority priority);
+        Task<IEnumerable<Project>> GetProjectsByStatus(StatusProject status);
 
-        IEnumerable<Project> GetProjectsByDate(DateTime dateStart);
+        Task<IEnumerable<Project>> GetProjectsByPriority(Priority priority);
 
-        IEnumerable<Project> GetProjectsByDateRange(DateTime dateStart, DateTime dateEnd);
+        Task<IEnumerable<Project>> GetProjectsByDate(DateTime dateStart);
+
+        Task<IEnumerable<Project>> GetProjectsByDateRange(DateTime dateStart, DateTime dateEnd);
     }
 }
