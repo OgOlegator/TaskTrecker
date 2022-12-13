@@ -98,7 +98,7 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         }
 
         /// <summary>
-        /// get tasks by the occurrence of the search string
+        /// Get tasks by the occurrence of the search string
         /// </summary>
         /// <param name="nameTask"></param>
         /// <returns></returns>

@@ -19,8 +19,8 @@ namespace TaskTrecker.TaskTreckerApi.Repository.IRepository
 
         Task<IEnumerable<Project>> GetProjectsByPriority(Priority priority);
 
-        Task<IEnumerable<Project>> GetProjectsByDate(DateTime dateStart);
+        Task<IEnumerable<Project>> GetProjectsByDateFrom(DateTime dateFrom);
 
-        Task<IEnumerable<Project>> GetProjectsByDateRange(DateTime dateStart, DateTime dateEnd);
+        Task<IEnumerable<Project>> GetProjectsByDateRange(DateTime dateFrom, DateTime dateTo);
     }
 }

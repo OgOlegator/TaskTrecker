@@ -100,29 +100,65 @@ namespace TaskTrecker.TaskTreckerApi.Repository
             return listProjects;
         }
 
-        public Task<IEnumerable<Project>> GetProjectsByDate(DateTime dateStart)
+        /// <summary>
+        /// Get projects whose start date is after the date from
+        /// </summary>
+        /// <param name="dateFrom"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Project>> GetProjectsByDateFrom(DateTime dateFrom)
         {
-            throw new NotImplementedException();
+            var listProjects = await _db.Projects.Where(item => item.CreatedDate > dateFrom).ToListAsync();
+
+            return listProjects;
         }
 
-        public Task<IEnumerable<Project>> GetProjectsByDateRange(DateTime dateStart, DateTime dateEnd)
+        /// <summary>
+        /// Get projects whose start date is between date from and date to
+        /// </summary>
+        /// <param name="dateFrom"></param>
+        /// <param name="dateTo"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Project>> GetProjectsByDateRange(DateTime dateFrom, DateTime dateTo)
         {
-            throw new NotImplementedException();
+            var listProjects = await _db.Projects.Where(item => item.CreatedDate > dateFrom && item.CreatedDate < dateTo).ToListAsync();
+
+            return listProjects;
         }
 
-        public Task<IEnumerable<Project>> GetProjectsByName(string nameProject)
+        /// <summary>
+        /// Get projects by the occurrence of the search string
+        /// </summary>
+        /// <param name="nameProject"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Project>> GetProjectsByName(string nameProject)
         {
-            throw new NotImplementedException();
+            var listProjects = await _db.Projects.Where(item => item.Name.Contains(nameProject)).ToListAsync();
+
+            return listProjects;
         }
 
-        public Task<IEnumerable<Project>> GetProjectsByPriority(SD.Priority priority)
+        /// <summary>
+        /// Get projects by task execution priority
+        /// </summary>
+        /// <param name="priority"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Project>> GetProjectsByPriority(SD.Priority priority)
         {
-            throw new NotImplementedException();
+            var listProjects = await _db.Projects.Where(item => item.Priority == priority).ToListAsync();
+
+            return listProjects;
         }
 
-        public Task<IEnumerable<Project>> GetProjectsByStatus(StatusProject status)
+        /// <summary>
+        /// Get projects by execution status
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Project>> GetProjectsByStatus(StatusProject status)
         {
-            throw new NotImplementedException();
+            var listProjects = await _db.Projects.Where(item => item.Status == status).ToListAsync();
+
+            return listProjects;
         }
     }
 }
