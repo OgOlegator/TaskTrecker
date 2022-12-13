@@ -5,10 +5,16 @@ using TaskTrecker.TaskTreckerApi.Repository.IRepository;
 
 namespace TaskTrecker.TaskTreckerApi.Controllers
 {
+    /// <summary>
+    /// API for getting tasks of a specific project
+    /// </summary>
     [Route("api/tasksproject")]
     [ApiController]
     public class TasksProjectController : ControllerBase
     {
+        /// <summary>
+        /// Object to work with data base
+        /// </summary>
         private readonly ITaskRepository _repository;
         private ResponseDto _response = new ResponseDto();
 
@@ -18,7 +24,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get all tasks in a project
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
