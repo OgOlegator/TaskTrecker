@@ -50,7 +50,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="projectId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{taskId}")]
+        [Route("{projectId}")]
         public async Task<ResponseDto> GetProjectById(string projectId)
         {
             try
@@ -73,7 +73,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="searchName"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{searchName}")]
+        [Route("GetByName/{searchName}")]
         public async Task<ResponseDto> GetProjectsByName(string searchName)
         {
             try
@@ -96,7 +96,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="status"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{status}")]
+        [Route("GetByStatus/{status}")]
         public async Task<ResponseDto> GetProjectsByStatus(StatusProject status)
         {
             try
@@ -119,7 +119,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="priority"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{priority}")]
+        [Route("GetByPriority/{priority}")]
         public async Task<ResponseDto> GetProjectsByPriority(SD.Priority priority)
         {
             try
@@ -142,7 +142,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="dateFrom"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{dateFrom}")]
+        [Route("GetByDateFrom/{dateFrom}")]
         public async Task<ResponseDto> GetProjectsByDateFrom(string dateFrom)
         {
             try
@@ -166,7 +166,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="dateTo"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{dateFrom} {dateTo}")]
+        [Route("GetByDateRange/{dateFrom} {dateTo}")]
         public async Task<ResponseDto> GetProjectsByDateRange(string dateFrom, string dateTo)
         {
             try
