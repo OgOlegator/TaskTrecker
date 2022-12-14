@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using TaskTrecker.TaskTreckerApi.Models;
 using TaskTrecker.TaskTreckerApi.Models.Dto;
 using TaskTrecker.TaskTreckerApi.Repository.IRepository;
@@ -13,12 +15,14 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <summary>
         /// Object to work with data base
         /// </summary>
-        private readonly ITaskRepository _repository;
+        private readonly ITaskRepository _repositoryTask;
+        private readonly IProjectRepository _repositoryProject;
         private ResponseDto _response = new ResponseDto();
 
-        public TasksController(ITaskRepository repository)
+        public TasksController(ITaskRepository repositoryTask, IProjectRepository repositoryProject)
         {
-            _repository = repository;
+            _repositoryTask = repositoryTask;
+            _repositoryProject = repositoryProject;
         }
 
         /// <summary>
@@ -30,7 +34,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         {
             try
             {
-                _response.Result = await _repository.GetTasks();
+                _response.Result = await _repositoryTask.GetTasks();
             }
             catch (Exception ex)
             {
@@ -53,7 +57,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         {
             try
             {
-                _response.Result = await _repository.GetTaskById(int.Parse(taskId));
+                _response.Result = await _repositoryTask.GetTaskById(int.Parse(taskId));
             }
             catch (Exception ex)
             {
@@ -71,12 +75,12 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="searchName"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{searchName}")]
+        [Route("GetByName/{searchName}")]
         public async Task<ResponseDto> GetTasksByName(string searchName)
         {
             try
             {
-                _response.Result = await _repository.GetTasksByName(searchName);
+                _response.Result = await _repositoryTask.GetTasksByName(searchName);
             }
             catch (Exception ex)
             {
@@ -94,12 +98,12 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="status"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{status}")]
+        [Route("GetByStatus/{status}")]
         public async Task<ResponseDto> GetTasksByStatus(StatusTask status)
         {
             try
             {
-                _response.Result = await _repository.GetTasksByStatus(status);
+                _response.Result = await _repositoryTask.GetTasksByStatus(status);
             }
             catch (Exception ex)
             {
@@ -117,12 +121,35 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="priority"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{priority}")]
+        [Route("GetByPriority/{priority}")]
         public async Task<ResponseDto> GetTasksByPriority(SD.Priority priority)
         {
             try
             {
-                _response.Result = await _repository.GetTasksByPriority(priority);
+                _response.Result = await _repositoryTask.GetTasksByPriority(priority);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.DisplayMessage = ex.Message;
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+            }
+
+            return _response;
+        }
+
+        /// <summary>
+        /// Get all tasks in a project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetByProject/{projectId}")]
+        public async Task<ResponseDto> GetProjectTasks(string projectId)
+        {
+            try
+            {
+                _response.Result = await _repositoryTask.GetTasksByProject(int.Parse(projectId));
             }
             catch (Exception ex)
             {
@@ -144,7 +171,9 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         {
             try
             {
-                _response.Result = await _repository.CreateUpdateTask(task);
+                SetProjectInTask(task);
+
+                _response.Result = await _repositoryTask.CreateUpdateTask(task);
             }
             catch (Exception ex)
             {
@@ -161,7 +190,9 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         {
             try
             {
-                _response.Result = await _repository.CreateUpdateTask(task);
+                SetProjectInTask(task);
+
+                _response.Result = await _repositoryTask.CreateUpdateTask(task);
             }
             catch (Exception ex)
             {
@@ -179,7 +210,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         {
             try
             {
-                _response.Result = await _repository.DeleteTask(int.Parse(taskId));
+                _response.Result = await _repositoryTask.DeleteTask(int.Parse(taskId));
             }
             catch (Exception ex)
             {
@@ -191,5 +222,13 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
             return _response;
         }
 
+        private async void SetProjectInTask(Models.Task task)
+        {
+            if (task.Project.Id == 0 || task.Project == null)
+                task.Project = await _repositoryProject.GetProjectById(task.IdProject);
+
+            if (task.Project == null)
+                throw new Exception("Project not found");
+        }
     }
 }
