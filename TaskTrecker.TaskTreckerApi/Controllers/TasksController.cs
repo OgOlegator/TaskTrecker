@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.Windows.Markup;
-using System.Xml.Serialization;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using TaskTrecker.TaskTreckerApi.Models;
 using TaskTrecker.TaskTreckerApi.Models.Dto;
 using TaskTrecker.TaskTreckerApi.Repository.IRepository;

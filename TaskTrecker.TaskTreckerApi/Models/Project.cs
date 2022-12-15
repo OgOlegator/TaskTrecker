@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using static TaskTrecker.TaskTreckerApi.SD;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
 
 namespace TaskTrecker.TaskTreckerApi.Models
 {
     public enum StatusProject
     {
-        [Display(Name = "NotStarted")]
         NotStarted,
-        [Display(Name = "Active")]
         Active,
-        [Display(Name = "Completed")]
         Completed
     }
 

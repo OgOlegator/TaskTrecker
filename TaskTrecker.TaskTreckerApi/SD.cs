@@ -2,6 +2,9 @@
 
 namespace TaskTrecker.TaskTreckerApi
 {
+    /// <summary>
+    /// Static details 
+    /// </summary>
     public class SD
     {
         /// <summary>
@@ -9,13 +12,9 @@ namespace TaskTrecker.TaskTreckerApi
         /// </summary>
         public enum Priority
         {
-            [Display(Name = "VeryHigh")]
             VeryHigh,
-            [Display(Name = "High")]
             High,
-            [Display(Name = "Medium")]
             Medium,
-            [Display(Name = "Low")]
             Low
         }
 
