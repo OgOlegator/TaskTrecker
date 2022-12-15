@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows.Markup;
+using System.Xml.Serialization;
 using TaskTrecker.TaskTreckerApi.Models;
 using TaskTrecker.TaskTreckerApi.Models.Dto;
 using TaskTrecker.TaskTreckerApi.Repository.IRepository;
@@ -185,6 +189,11 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
             return _response;
         }
 
+        /// <summary>
+        /// Update task
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<ResponseDto> UpdateTask([FromBody] Models.Task task)
         {
@@ -204,6 +213,11 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
             return _response;
         }
 
+        /// <summary>
+        /// Delete task
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{taskId}")]
         public async Task<ResponseDto> DeleteTask(string taskId)
@@ -222,6 +236,11 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
             return _response;
         }
 
+        /// <summary>
+        /// In json Task may not be filled with Project
+        /// </summary>
+        /// <param name="task"></param>
+        /// <exception cref="Exception"></exception>
         private async void SetProjectInTask(Models.Task task)
         {
             if (task.Project.Id == 0 || task.Project == null)

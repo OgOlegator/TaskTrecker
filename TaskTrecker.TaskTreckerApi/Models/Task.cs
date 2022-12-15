@@ -5,8 +5,11 @@ namespace TaskTrecker.TaskTreckerApi.Models
 {
     public enum StatusTask
     {
+        [Display(Name = "Todo")]
         Todo,
+        [Display(Name = "InProgress")]
         InProgress,
+        [Display(Name = "Done")]
         Done
     }
 

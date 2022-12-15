@@ -5,8 +5,11 @@ namespace TaskTrecker.TaskTreckerApi.Models
 {
     public enum StatusProject
     {
+        [Display(Name = "NotStarted")]
         NotStarted,
+        [Display(Name = "Active")]
         Active,
+        [Display(Name = "Completed")]
         Completed
     }
 

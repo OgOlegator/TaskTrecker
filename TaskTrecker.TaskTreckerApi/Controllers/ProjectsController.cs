@@ -205,7 +205,11 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
             return _response;
         }
 
-
+        /// <summary>
+        /// Update project
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<ResponseDto> UpdateProject([FromBody] Project project)
         {
@@ -223,6 +227,11 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
             return _response;
         }
 
+        /// <summary>
+        /// Delete project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{projectId}")]
         public async Task<ResponseDto> DeleteProject(string projectId)
