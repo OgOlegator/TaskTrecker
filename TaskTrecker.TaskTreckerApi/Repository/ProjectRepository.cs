@@ -60,11 +60,6 @@ namespace TaskTrecker.TaskTreckerApi.Repository
                 throw new ArgumentNullException("Project not found");
             }
 
-            var projectTasks = _db.Tasks.Where(item => item.IdProject == id);
-
-            if (projectTasks != null)
-                _db.Tasks.RemoveRange(projectTasks);
-
             _db.Projects.Remove(project);
 
             try

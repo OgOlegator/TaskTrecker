@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using static TaskTrecker.TaskTreckerApi.SD;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace TaskTrecker.TaskTreckerApi.Models
 {
