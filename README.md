@@ -34,4 +34,4 @@ Models
 
 Api structure
 
-![image](https://user-images.githubusercontent.com/92753056/208257415-f0c1b409-37ca-4193-9718-aa1c58d6195e.png)
+![image](https://user-images.githubusercontent.com/92753056/208264331-7a17e2fc-ef95-4801-808e-8ee8ce0091db.png)
