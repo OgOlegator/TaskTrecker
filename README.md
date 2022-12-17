@@ -21,4 +21,4 @@ Models class-diagram
 
 Api structure class-diagram
 
-![image](https://user-images.githubusercontent.com/92753056/208257312-684de771-a49c-4607-bd6c-a6a1bbe4bc19.png)
+![image](https://user-images.githubusercontent.com/92753056/208257366-6f4339b5-7908-4c73-9b12-8e6e32a7464f.png)
