@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Converters;
 using System.Reflection;
+using TaskTrecker.TaskTreckerApi;
 using TaskTrecker.TaskTreckerApi.DbContexts;
 using TaskTrecker.TaskTreckerApi.Repository;
 using TaskTrecker.TaskTreckerApi.Repository.IRepository;
@@ -10,6 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options
     => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var mapper = MappingConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();

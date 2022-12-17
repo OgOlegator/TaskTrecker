@@ -166,12 +166,10 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="task"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResponseDto> CreateTask([FromBody] Models.Task task)
+        public async Task<ResponseDto> CreateTask([FromBody] TaskDto task)
         {
             try
             {
-                SetProjectInTask(task);
-
                 _response.Result = await _repositoryTask.CreateUpdateTask(task);
             }
             catch (Exception ex)
@@ -190,12 +188,10 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="task"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<ResponseDto> UpdateTask([FromBody] Models.Task task)
+        public async Task<ResponseDto> UpdateTask([FromBody] TaskDto task)
         {
             try
             {
-                SetProjectInTask(task);
-
                 _response.Result = await _repositoryTask.CreateUpdateTask(task);
             }
             catch (Exception ex)
@@ -229,20 +225,6 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
             }
 
             return _response;
-        }
-
-        /// <summary>
-        /// In json Task may not be filled with Project
-        /// </summary>
-        /// <param name="task"></param>
-        /// <exception cref="Exception"></exception>
-        private async void SetProjectInTask(Models.Task task)
-        {
-            if (task.Project.Id == 0 || task.Project == null)
-                task.Project = await _repositoryProject.GetProjectById(task.IdProject);
-
-            if (task.Project == null)
-                throw new Exception("Project not found");
         }
     }
 }

@@ -189,7 +189,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="project"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ResponseDto> CreateProject([FromBody] Project project)
+        public async Task<ResponseDto> CreateProject([FromBody] ProjectDto project)
         {
             try
             {
@@ -211,7 +211,7 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="project"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<ResponseDto> UpdateProject([FromBody] Project project)
+        public async Task<ResponseDto> UpdateProject([FromBody] ProjectDto project)
         {
             try
             {
