@@ -31,6 +31,7 @@ The database connection string is stored in a file appsettings.json
 
 Script create database:
 Add-migration <Name_migration>
+
 Update-database
 
 # Project description
