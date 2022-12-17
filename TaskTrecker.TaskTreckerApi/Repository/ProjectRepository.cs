@@ -112,7 +112,10 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// <returns></returns>
         public async Task<IEnumerable<ProjectDto>> GetProjectsByDateCreateFrom(DateTime dateFrom)
         {
-            var listProjects = await _db.Projects.Where(item => item.CreatedDate > dateFrom).ToListAsync();
+            var listProjects = await _db.Projects
+                .Where(item 
+                    => item.CreatedDate >= dateFrom)
+                .ToListAsync();
 
             return _mapper.Map<List<ProjectDto>>(listProjects);
         }
@@ -123,9 +126,17 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// <param name="dateFrom"></param>
         /// <param name="dateTo"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public async Task<IEnumerable<ProjectDto>> GetProjectsByDateCreateRange(DateTime dateFrom, DateTime dateTo)
         {
-            var listProjects = await _db.Projects.Where(item => item.CreatedDate > dateFrom && item.CreatedDate < dateTo).ToListAsync();
+            if (dateFrom > dateTo)
+                throw new ArgumentOutOfRangeException("Error. dateFrom > dateTo");
+
+            var listProjects = await _db.Projects
+                .Where(item 
+                    => item.CreatedDate >= dateFrom 
+                    && item.CreatedDate <= dateTo)
+                .ToListAsync();
 
             return _mapper.Map<List<ProjectDto>>(listProjects);
         }
@@ -153,9 +164,12 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// <param name="dateFrom"></param>
         /// <param name="dateTo"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public async Task<IEnumerable<ProjectDto>> GetProjectsByDateEndRange(DateTime dateFrom, DateTime dateTo)
         {
+            if (dateFrom > dateTo)
+                throw new ArgumentOutOfRangeException("Error. dateFrom > dateTo");
+
             var listProjects = await _db.Projects
                 .Where(item 
                     => item.Status == StatusProject.Completed 
