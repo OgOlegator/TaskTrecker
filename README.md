@@ -1,5 +1,13 @@
 # TaskTrecker
 
+Using technologies: 
+- .Net Core, 
+- WebApi, 
+- EF Core.
+
+Using database: 
+- MsSql
+
 Using NuGet:
 - AutoMapper (12.0.0)
 - AutoMapper.Extensions.Microsoft.DependencyInjection (12.0.0)
