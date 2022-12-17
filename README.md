@@ -1,6 +1,7 @@
 # TaskTrecker
 
-The application is a repository of tasks for projects.
+The application is a repository of tasks for projects. Web API for entering project data into the database (task tracker).
+Each task is part of one of the projects. A project is an object that contains a name, an identifier (and also contains Task objects).
 
 Application features:
 - Create/Modify/Delete a project
