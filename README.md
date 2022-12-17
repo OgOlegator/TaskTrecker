@@ -19,5 +19,5 @@ Using NuGet:
 Models class-diagram
 ![image](https://user-images.githubusercontent.com/92753056/208234094-24f0f69c-2b7b-4422-8a77-3eed1b4ca1d2.png)
 
-Api logic class-diagram
+Api structure class-diagram
 ![image](https://user-images.githubusercontent.com/92753056/208235822-6f63ab0e-c571-47be-9a39-bb35cad50993.png)
