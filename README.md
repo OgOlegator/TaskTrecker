@@ -17,8 +17,9 @@ Using NuGet:
 - Swashbuckle.AspNetCore.Newtonsoft (6.4.0)
 
 Models class-diagram
+
 ![image](https://user-images.githubusercontent.com/92753056/208234094-24f0f69c-2b7b-4422-8a77-3eed1b4ca1d2.png)
 
 Api structure class-diagram
 
-![image](https://user-images.githubusercontent.com/92753056/208257366-6f4339b5-7908-4c73-9b12-8e6e32a7464f.png)
+![image](https://user-images.githubusercontent.com/92753056/208257415-f0c1b409-37ca-4193-9718-aa1c58d6195e.png)
