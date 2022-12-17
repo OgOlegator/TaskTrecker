@@ -26,7 +26,7 @@ Script create database:
 Add-migration <Name_migration>
 Update-database
 
-# Class-diagrams
+# Project description
 
 Models
 
