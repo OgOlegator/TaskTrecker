@@ -1,22 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskTrecker.TaskTreckerApi.DbContexts;
-using TaskTrecker.TaskTreckerApi.Models;
 
 namespace TaskTrecker.TaskTreckerApiTest
 {
-    internal class TestContexts
+    public class TestContexts
     {
         public static ApplicationDbContext GetContext()
         {
             var testContext = new TaskTreckerApi.DbContexts.ApplicationDbContext(new DbContextOptions<ApplicationDbContext>());
 
-            testContext.Projects.AddRange(GetProjectsData());
-            testContext.Tasks.AddRange(GetTasksData());
+            //testContext.Projects.AddRange(GetProjectsData());
+            //testContext.Tasks.AddRange(GetTasksData());
 
             return testContext;
         }
