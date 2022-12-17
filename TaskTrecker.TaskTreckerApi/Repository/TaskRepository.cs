@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using TaskTrecker.TaskTreckerApi.DbContexts;
 using TaskTrecker.TaskTreckerApi.Models;
+using TaskTrecker.TaskTreckerApi.Models.Dto;
 using TaskTrecker.TaskTreckerApi.Repository.IRepository;
 using static TaskTrecker.TaskTreckerApi.SD;
 
@@ -10,20 +12,24 @@ namespace TaskTrecker.TaskTreckerApi.Repository
     public class TaskRepository : ITaskRepository
     {
         private readonly ApplicationDbContext _db;
+        private IMapper _mapper;
 
-        public TaskRepository(ApplicationDbContext db)
+        public TaskRepository(ApplicationDbContext db, IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
         }
 
         /// <summary>
         /// Add new task or change task info in data base
         /// </summary>
-        /// <param name="task"></param>
+        /// <param name="taskDto"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<Models.Task> CreateUpdateTask(Models.Task task)
+        public async Task<TaskDto> CreateUpdateTask(TaskDto taskDto)
         {
+            var task = _mapper.Map<Models.Task>(taskDto);
+
             if (task.Id > 0)
             {
                 _db.Tasks.Update(task);
@@ -43,7 +49,7 @@ namespace TaskTrecker.TaskTreckerApi.Repository
             }
 
 
-            return task;
+            return _mapper.Map<TaskDto>(task);
         }
 
         /// <summary>
@@ -81,20 +87,22 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// </summary>
         /// <param name="taskId"></param>
         /// <returns></returns>
-        public async Task<Models.Task> GetTaskById(int taskId)
+        public async Task<TaskDto> GetTaskById(int taskId)
         {
-            return await _db.Tasks.FirstOrDefaultAsync(item => item.Id == taskId);
+            var task = await _db.Tasks.FirstOrDefaultAsync(item => item.Id == taskId);
+
+            return _mapper.Map<TaskDto>(task);
         }
 
         /// <summary>
         /// Get all tasks from data base
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<Models.Task>> GetTasks()
+        public async Task<IEnumerable<TaskDto>> GetTasks()
         {
             var listTasks = await _db.Tasks.ToListAsync();
 
-            return listTasks;
+            return _mapper.Map<List<TaskDto>>(listTasks);
         }
 
         /// <summary>
@@ -102,11 +110,11 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// </summary>
         /// <param name="nameTask"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<Models.Task>> GetTasksByName(string nameTask)
+        public async Task<IEnumerable<TaskDto>> GetTasksByName(string nameTask)
         {
             var listTasks = await _db.Tasks.Where(item => item.Name.Contains(nameTask)).ToListAsync();
 
-            return listTasks;
+            return _mapper.Map<List<TaskDto>>(listTasks);
         }
 
         /// <summary>
@@ -114,11 +122,11 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// </summary>
         /// <param name="priority"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<Models.Task>> GetTasksByPriority(SD.Priority priority)
+        public async Task<IEnumerable<TaskDto>> GetTasksByPriority(SD.Priority priority)
         {
             var listTasks = await _db.Tasks.Where(item => item.Priority == priority).ToListAsync();
 
-            return listTasks;
+            return _mapper.Map<List<TaskDto>>(listTasks);
         }
 
         /// <summary>
@@ -126,11 +134,11 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<Models.Task>> GetTasksByProject(int projectId)
+        public async Task<IEnumerable<TaskDto>> GetTasksByProject(int projectId)
         {
             var listTasks = await _db.Tasks.Where(item => item.IdProject == projectId).ToListAsync();
 
-            return listTasks;
+            return _mapper.Map<List<TaskDto>>(listTasks);
         }
 
         /// <summary>
@@ -138,11 +146,11 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// </summary>
         /// <param name="status"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<Models.Task>> GetTasksByStatus(StatusTask status)
+        public async Task<IEnumerable<TaskDto>> GetTasksByStatus(StatusTask status)
         {
             var listTasks = await _db.Tasks.Where(item => item.Status == status).ToListAsync();
 
-            return listTasks;
+            return _mapper.Map<List<TaskDto>>(listTasks);
         }
     }
 }

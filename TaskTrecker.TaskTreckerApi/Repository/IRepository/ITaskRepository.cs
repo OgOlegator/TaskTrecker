@@ -1,5 +1,6 @@
 ﻿using static TaskTrecker.TaskTreckerApi.SD;
 using TaskTrecker.TaskTreckerApi.Models;
+using TaskTrecker.TaskTreckerApi.Models.Dto;
 
 namespace TaskTrecker.TaskTreckerApi.Repository.IRepository
 {
@@ -8,9 +9,9 @@ namespace TaskTrecker.TaskTreckerApi.Repository.IRepository
         /// <summary>
         /// Add new task or change task info in data base
         /// </summary>
-        /// <param name="task"></param>
+        /// <param name="taskDto"></param>
         /// <returns></returns>
-        Task<Models.Task> CreateUpdateTask(Models.Task task);
+        Task<TaskDto> CreateUpdateTask(TaskDto taskDto);
 
         /// <summary>
         /// Delete task in data base
@@ -23,42 +24,42 @@ namespace TaskTrecker.TaskTreckerApi.Repository.IRepository
         /// Get all tasks from data base
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Models.Task>> GetTasks();
+        Task<IEnumerable<TaskDto>> GetTasks();
 
         /// <summary>
         /// Get project tasks
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        Task<IEnumerable<Models.Task>> GetTasksByProject(int projectId);
+        Task<IEnumerable<TaskDto>> GetTasksByProject(int projectId);
 
         /// <summary>
         /// Get concrete task in data base
         /// </summary>
         /// <param name="taskId"></param>
         /// <returns></returns>
-        Task<Models.Task> GetTaskById(int taskId);
+        Task<TaskDto> GetTaskById(int taskId);
 
         /// <summary>
         /// Get tasks by the occurrence of the search string
         /// </summary>
         /// <param name="nameTask"></param>
         /// <returns></returns>
-        Task<IEnumerable<Models.Task>> GetTasksByName(string nameTask);
+        Task<IEnumerable<TaskDto>> GetTasksByName(string nameTask);
 
         /// <summary>
         /// Get tasks by execution status
         /// </summary>
         /// <param name="status"></param>
         /// <returns></returns>
-        Task<IEnumerable<Models.Task>> GetTasksByStatus(StatusTask status);
+        Task<IEnumerable<TaskDto>> GetTasksByStatus(StatusTask status);
 
         /// <summary>
         /// Get tasks by task execution priority
         /// </summary>
         /// <param name="priority"></param>
         /// <returns></returns>
-        Task<IEnumerable<Models.Task>> GetTasksByPriority(Priority priority);
+        Task<IEnumerable<TaskDto>> GetTasksByPriority(Priority priority);
 
     }
 }
