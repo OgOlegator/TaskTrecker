@@ -20,7 +20,7 @@ Using NuGet:
 
 The database connection string is stored in a file
 
-#Class-diagrams
+# Class-diagrams
 
 Models
 
