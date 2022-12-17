@@ -59,7 +59,7 @@ namespace TaskTrecker.TaskTreckerApi.Repository.IRepository
         /// </summary>
         /// <param name="dateFrom"></param>
         /// <returns></returns>
-        Task<IEnumerable<ProjectDto>> GetProjectsByDateFrom(DateTime dateFrom);
+        Task<IEnumerable<ProjectDto>> GetProjectsByDateCreateFrom(DateTime dateFrom);
 
         /// <summary>
         /// Get projects whose start date is between date from and date to
@@ -67,6 +67,21 @@ namespace TaskTrecker.TaskTreckerApi.Repository.IRepository
         /// <param name="dateFrom"></param>
         /// <param name="dateTo"></param>
         /// <returns></returns>
-        Task<IEnumerable<ProjectDto>> GetProjectsByDateRange(DateTime dateFrom, DateTime dateTo);
+        Task<IEnumerable<ProjectDto>> GetProjectsByDateCreateRange(DateTime dateFrom, DateTime dateTo);
+
+        /// <summary>
+        /// Get projects whose end date is after the date from
+        /// </summary>
+        /// <param name="dateFrom"></param>
+        /// <returns></returns>
+        Task<IEnumerable<ProjectDto>> GetProjectsByDateEndFrom(DateTime dateFrom);
+
+        /// <summary>
+        /// Get projects whose end date is between date from and date to
+        /// </summary>
+        /// <param name="dateFrom"></param>
+        /// <param name="dateTo"></param>
+        /// <returns></returns>
+        Task<IEnumerable<ProjectDto>> GetProjectsByDateEndRange(DateTime dateFrom, DateTime dateTo);
     }
 }

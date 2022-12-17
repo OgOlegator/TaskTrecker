@@ -107,7 +107,7 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// </summary>
         /// <param name="dateFrom"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<ProjectDto>> GetProjectsByDateFrom(DateTime dateFrom)
+        public async Task<IEnumerable<ProjectDto>> GetProjectsByDateCreateFrom(DateTime dateFrom)
         {
             var listProjects = await _db.Projects.Where(item => item.CreatedDate > dateFrom).ToListAsync();
 
@@ -120,9 +120,45 @@ namespace TaskTrecker.TaskTreckerApi.Repository
         /// <param name="dateFrom"></param>
         /// <param name="dateTo"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<ProjectDto>> GetProjectsByDateRange(DateTime dateFrom, DateTime dateTo)
+        public async Task<IEnumerable<ProjectDto>> GetProjectsByDateCreateRange(DateTime dateFrom, DateTime dateTo)
         {
             var listProjects = await _db.Projects.Where(item => item.CreatedDate > dateFrom && item.CreatedDate < dateTo).ToListAsync();
+
+            return _mapper.Map<List<ProjectDto>>(listProjects);
+        }
+
+        /// <summary>
+        /// Get projects whose start date is after the date from
+        /// </summary>
+        /// <param name="dateFrom"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<IEnumerable<ProjectDto>> GetProjectsByDateEndFrom(DateTime dateFrom)
+        {
+            var listProjects = await _db.Projects
+                .Where(item 
+                    => item.Status == StatusProject.Completed 
+                    && item.EndDate >= dateFrom)
+                .ToListAsync();
+
+            return _mapper.Map<List<ProjectDto>>(listProjects);
+        }
+
+        /// <summary>
+        /// Get projects whose start date is between date from and date to
+        /// </summary>
+        /// <param name="dateFrom"></param>
+        /// <param name="dateTo"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<IEnumerable<ProjectDto>> GetProjectsByDateEndRange(DateTime dateFrom, DateTime dateTo)
+        {
+            var listProjects = await _db.Projects
+                .Where(item 
+                    => item.Status == StatusProject.Completed 
+                    && item.EndDate >= dateFrom 
+                    && item.EndDate <= dateTo)
+                .ToListAsync();
 
             return _mapper.Map<List<ProjectDto>>(listProjects);
         }

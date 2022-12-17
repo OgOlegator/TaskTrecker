@@ -142,12 +142,12 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="dateFrom"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetByDateFrom/{dateFrom}")]
-        public async Task<ResponseDto> GetProjectsByDateFrom(string dateFrom)
+        [Route("GetByDateFrom/DateCreate/{dateFrom}")]
+        public async Task<ResponseDto> GetProjectsByDateCreateFrom(string dateFrom)
         {
             try
             {
-                _response.Result = await _repository.GetProjectsByDateFrom(DateTime.Parse(dateFrom));
+                _response.Result = await _repository.GetProjectsByDateCreateFrom(DateTime.Parse(dateFrom));
             }
             catch (Exception ex)
             {
@@ -166,12 +166,59 @@ namespace TaskTrecker.TaskTreckerApi.Controllers
         /// <param name="dateTo"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetByDateRange/{dateFrom} {dateTo}")]
-        public async Task<ResponseDto> GetProjectsByDateRange(string dateFrom, string dateTo)
+        [Route("GetByDateRange/DateCreate/{dateFrom} {dateTo}")]
+        public async Task<ResponseDto> GetProjectsByDateCreateRange(string dateFrom, string dateTo)
         {
             try
             {
-                _response.Result = await _repository.GetProjectsByDateRange(DateTime.Parse(dateFrom), DateTime.Parse(dateTo));
+                _response.Result = await _repository.GetProjectsByDateCreateRange(DateTime.Parse(dateFrom), DateTime.Parse(dateTo));
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.DisplayMessage = ex.Message;
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+            }
+
+            return _response;
+        }
+
+        /// <summary>
+        /// Get projects whose end date is after the date from
+        /// </summary>
+        /// <param name="dateFrom"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetByDateFrom/DateEnd/{dateFrom}")]
+        public async Task<ResponseDto> GetProjectsByDateEndFrom(string dateFrom)
+        {
+            try
+            {
+                _response.Result = await _repository.GetProjectsByDateEndFrom(DateTime.Parse(dateFrom));
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.DisplayMessage = ex.Message;
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+            }
+
+            return _response;
+        }
+
+        /// <summary>
+        /// Get projects whose end date is between date from and date to
+        /// </summary>
+        /// <param name="dateFrom"></param>
+        /// <param name="dateTo"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetByDateRange/DateEnd/{dateFrom} {dateTo}")]
+        public async Task<ResponseDto> GetProjectsByDateEndRange(string dateFrom, string dateTo)
+        {
+            try
+            {
+                _response.Result = await _repository.GetProjectsByDateEndRange(DateTime.Parse(dateFrom), DateTime.Parse(dateTo));
             }
             catch (Exception ex)
             {
