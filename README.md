@@ -30,7 +30,7 @@ Update-database
 
 Models
 
-![image](https://user-images.githubusercontent.com/92753056/208234094-24f0f69c-2b7b-4422-8a77-3eed1b4ca1d2.png)
+![image](https://user-images.githubusercontent.com/92753056/208264418-1dc9e226-89fa-409c-ace2-f038e2369389.png)
 
 Api structure
 
