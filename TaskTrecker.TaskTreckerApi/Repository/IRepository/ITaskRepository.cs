@@ -4,6 +4,9 @@ using TaskTrecker.TaskTreckerApi.Models.Dto;
 
 namespace TaskTrecker.TaskTreckerApi.Repository.IRepository
 {
+    /// <summary>
+    /// Interface describing work with the database for the entity Task
+    /// </summary>
     public interface ITaskRepository
     {
         /// <summary>

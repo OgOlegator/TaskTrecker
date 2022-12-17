@@ -8,6 +8,9 @@ using TaskTrecker.TaskTreckerApi.Repository.IRepository;
 
 namespace TaskTrecker.TaskTreckerApi.Repository
 {
+    /// <summary>
+    /// Class for work with the data base for the entity Project.
+    /// </summary>
     public class ProjectRepository : IProjectRepository
     {
         private readonly ApplicationDbContext _db;

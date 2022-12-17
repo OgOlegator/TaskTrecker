@@ -9,6 +9,9 @@ using static TaskTrecker.TaskTreckerApi.SD;
 
 namespace TaskTrecker.TaskTreckerApi.Repository
 {
+    /// <summary>
+    /// Class for work with the data base for the entity Task
+    /// </summary>
     public class TaskRepository : ITaskRepository
     {
         private readonly ApplicationDbContext _db;
