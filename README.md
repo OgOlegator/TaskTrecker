@@ -2,6 +2,12 @@
 
 The application is a repository of tasks for projects.
 
+Application features:
+- Create/Modify/Delete a project
+- Obtaining information about projects / project (using various filters)
+- Create/Modify/Delete tasks
+- Getting information about tasks/tasks (using various filters)
+
 Using technologies: 
 - .Net Core, 
 - WebApi, 
