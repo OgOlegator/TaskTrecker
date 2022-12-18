@@ -27,6 +27,32 @@ Using NuGet:
 
 # Project description
 
+The application has a two-tier model-controller architecture.
+
+Responsible for working with the database:
+Models:
+- Project
+- Task
+
+Data transfer objects:
+- ProjectDto (For Project model)
+- TaskDto (For the Task model)
+- ResponseDto (WebApi response format)
+
+The ApplicationDbContext class is responsible for communicating with the database.
+
+Interaction with the database is described in interfaces:
+- IProjectRepository
+-ITaskRepository
+
+And implemented in classes:
+- ProjectRepository
+- TaskRepository
+
+API controllers:
+- ProjectController
+-TaskController
+
 Models
 
 ![image](https://user-images.githubusercontent.com/92753056/208264418-1dc9e226-89fa-409c-ace2-f038e2369389.png)
