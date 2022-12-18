@@ -76,4 +76,4 @@ First you need to create a project (one or more) using the Post method Api Proje
 
 Then create tasks for projects using the Post method of Api Task, specify the name of the Task, description, ID of the project to which the Task belongs, the status of the Task and the priority of its execution.
 
-Further it is possible to use all otsalny methods of Api.
+Then you can use all other API methods.
