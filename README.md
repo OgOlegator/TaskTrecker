@@ -17,6 +17,7 @@ Using technologies:
 Using database: 
 - MsSql
 
+# Project setup instructions
 Using NuGet:
 - AutoMapper (12.0.0)
 - AutoMapper.Extensions.Microsoft.DependencyInjection (12.0.0)
@@ -24,6 +25,12 @@ Using NuGet:
 - Microsoft.EntityFrameworkCore.Tools (7.0.0)
 - Swashbuckle.AspNetCore (6.2.3)
 - Swashbuckle.AspNetCore.Newtonsoft (6.4.0)
+The database connection string is stored in a file appsettings.json
+
+Script create database:
+Add-migration <Name_migration>
+
+Update-database
 
 # Project description
 
