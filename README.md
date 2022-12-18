@@ -50,11 +50,11 @@ The ApplicationDbContext class is responsible for communicating with the databas
 
 Interaction with the database is described in interfaces:
 - IProjectRepository
--ITaskRepository
+- ITaskRepository
 
 And implemented in classes:
-- ProjectRepository
-- TaskRepository
+- ProjectRepository (IProjectRepository)
+- TaskRepository (ITaskRepository)
 
 API controllers:
 - ProjectController
