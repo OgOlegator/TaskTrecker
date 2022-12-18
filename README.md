@@ -67,3 +67,13 @@ Models
 Api structure
 
 ![image](https://user-images.githubusercontent.com/92753056/208264331-7a17e2fc-ef95-4801-808e-8ee8ce0091db.png)
+
+# Working with the application
+
+The application is launched from Visual studio.
+
+First you need to create a project (one or more) using the Post method Api Project , specify its name, status and priority.
+
+Then create tasks for projects using the Post method of Api Task, specify the name of the Task, description, ID of the project to which the Task belongs, the status of the Task and the priority of its execution.
+
+Further it is possible to use all otsalny methods of Api.
